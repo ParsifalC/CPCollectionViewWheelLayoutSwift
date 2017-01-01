@@ -8,23 +8,79 @@
 
 import UIKit
 
+struct CPWheelLayoutConfiguration {
+    var _cellSize:CGSize
+    var _radius:Double
+    var _angular:Double //每个cell的角度间隔
+    var fadeAway:Bool
+    var maxContentHeight:Double
+    var contentHeigthPadding:Double
+    
+    // MARK: - Initial Methods
+    init(withCellSize cellSize:CGSize,
+                        radius:Double,
+                        angular:Double,
+                        fadeAway:Bool = true,
+                        maxContentHeight:Double = 0.0,
+                        contentHeigthPadding:Double = 0.0) {
+        _cellSize = cellSize
+        _radius = radius
+        _angular = angular
+        self.fadeAway = fadeAway
+        self.maxContentHeight = maxContentHeight
+        self.contentHeigthPadding = contentHeigthPadding
+    }
+    
+    // MARK: - Getter & Setter
+    var radius:Double {
+        get {
+            return _radius
+        }
+        set {
+            _radius = newValue>0 ? newValue : 200
+        }
+    }
+    
+    var angular:Double {
+        get {
+            return _angular
+        }
+        set {
+            _angular = newValue>0 ? newValue : 20.0
+        }
+    }
+    
+    var cellSize:CGSize {
+        get {
+            return _cellSize
+        }
+        set {
+            _cellSize = newValue.width<=0.0 || newValue.height<=0.0 ?  CGSize.init(width: 50.0, height: 50.0) : newValue
+        }
+    }
+}
+
 class CPCollectionViewWheelLayout: UICollectionViewLayout {
     
-    // MARK: - Private Properties
-    var cellSize = CGSize.init(width: 50.0, height: 50.0)
+    // MARK: - Properties
     var cellCount = 0
     var invisibleCellCount = 0.0
-    var radius = 200.0
-    var angular = 20.0 //每个cell的角度间隔
-    var fadeAway = true
-    var maxContentHeight = 0.0
-    open var contentHeigthPadding = 0.0
+    open var configuration:CPWheelLayoutConfiguration
     
     // MARK: - Open Methods
+    init(withConfiguration configuration:CPWheelLayoutConfiguration) {
+        self.configuration = configuration
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func prepare() {
         cellCount = collectionView!.numberOfItems(inSection: 0)
         if cellCount > 0 {
-            invisibleCellCount = Double(collectionView!.contentOffset.y/cellSize.height)
+            invisibleCellCount = Double(collectionView!.contentOffset.y/configuration.cellSize.height)
         }
     }
     
@@ -34,6 +90,10 @@ class CPCollectionViewWheelLayout: UICollectionViewLayout {
     
     override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         let viewSize = collectionView?.bounds.size
+        let cellSize = configuration.cellSize
+        let angular = configuration.angular
+        let radius = configuration.radius
+        let fadeAway = configuration.fadeAway
         let contentOffset = collectionView?.contentOffset
         let visibleCellIndex = Double(indexPath.item)-invisibleCellCount
         let attributes = UICollectionViewLayoutAttributes.init(forCellWith: indexPath)
@@ -67,12 +127,12 @@ class CPCollectionViewWheelLayout: UICollectionViewLayout {
         }
         return mutableAttributes
     }
-
+    
     override var collectionViewContentSize: CGSize {
         let viewSize = collectionView?.bounds.size
-        let visibleCellCount = CGFloat(90.0/angular+1.0)
+        let visibleCellCount = CGFloat(90.0/configuration.angular+1.0)
         return CGSize.init(width: viewSize!.width,
-                           height: (viewSize?.height)!+(CGFloat(cellCount)-visibleCellCount)*(cellSize.height)+CGFloat(contentHeigthPadding))
+                           height: (viewSize?.height)!+(CGFloat(cellCount)-visibleCellCount)*(configuration.cellSize.height)+CGFloat(configuration.contentHeigthPadding))
     }
     
 }
