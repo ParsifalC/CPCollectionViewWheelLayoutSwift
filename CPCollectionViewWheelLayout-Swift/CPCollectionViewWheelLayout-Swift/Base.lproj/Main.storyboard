@@ -48,7 +48,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="10" maxValue="40" translatesAutoresizingMaskIntoConstraints="NO" id="aov-qJ-Oo7">
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="20" minValue="10" maxValue="40" translatesAutoresizingMaskIntoConstraints="NO" id="aov-qJ-Oo7">
                                 <rect key="frame" x="95" y="59" width="266" height="31"/>
                                 <connections>
                                     <action selector="angularViewChanged:" destination="vF1-Ov-xjg" eventType="valueChanged" id="He1-w3-LxO"/>
