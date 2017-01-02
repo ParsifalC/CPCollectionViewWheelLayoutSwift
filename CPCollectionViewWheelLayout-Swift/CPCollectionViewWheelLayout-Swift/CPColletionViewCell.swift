@@ -25,7 +25,6 @@ class CPCollectionViewCell: UICollectionViewCell {
     // MARK:- Private Methods
     fileprivate func setupViews(frame:CGRect) {
         contentView.backgroundColor = .yellow
-        contentView.layer.cornerRadius = frame.width/2
         contentView.layer.masksToBounds = true
         let labelFrame = CGRect(x:0, y:0, width:frame.width, height:frame.height)
         textLabel = UILabel.init(frame: labelFrame)
@@ -33,6 +32,12 @@ class CPCollectionViewCell: UICollectionViewCell {
         textLabel.textColor = .black
         textLabel.textAlignment = .center
         contentView.addSubview(textLabel)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        contentView.layer.cornerRadius = frame.width/2
+        textLabel.frame = CGRect(x:0, y:0, width:frame.width, height:frame.height)
     }
     
 }
