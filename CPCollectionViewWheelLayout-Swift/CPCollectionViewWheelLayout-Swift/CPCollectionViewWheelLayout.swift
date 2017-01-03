@@ -1,5 +1,5 @@
 //
-//  CPCollectionViewWheelLayout-Swift.swift
+//  CPCollectionViewWheelLayout.swift
 //  CPCollectionViewWheelLayout-Swift
 //
 //  Created by Parsifal on 2016/12/30.

@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		9043E2431E155E4B00F90632 /* CPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9043E2421E155E4B00F90632 /* CPViewController.swift */; };
 		9043E2451E155E6F00F90632 /* CPColletionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9043E2441E155E6F00F90632 /* CPColletionViewCell.swift */; };
-		9043E2471E168D3300F90632 /* CPCollectionViewWheelLayout-Swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9043E2461E168D3300F90632 /* CPCollectionViewWheelLayout-Swift.swift */; };
+		9043E2471E168D3300F90632 /* CPCollectionViewWheelLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9043E2461E168D3300F90632 /* CPCollectionViewWheelLayout.swift */; };
 		90B5A9E01E0C0D7E00797565 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90B5A9DF1E0C0D7E00797565 /* AppDelegate.swift */; };
 		90B5A9E51E0C0D7E00797565 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90B5A9E31E0C0D7E00797565 /* Main.storyboard */; };
 		90B5A9E71E0C0D7E00797565 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90B5A9E61E0C0D7E00797565 /* Assets.xcassets */; };
@@ -19,7 +19,7 @@
 /* Begin PBXFileReference section */
 		9043E2421E155E4B00F90632 /* CPViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPViewController.swift; sourceTree = "<group>"; };
 		9043E2441E155E6F00F90632 /* CPColletionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPColletionViewCell.swift; sourceTree = "<group>"; };
-		9043E2461E168D3300F90632 /* CPCollectionViewWheelLayout-Swift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CPCollectionViewWheelLayout-Swift.swift"; sourceTree = "<group>"; };
+		9043E2461E168D3300F90632 /* CPCollectionViewWheelLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPCollectionViewWheelLayout.swift; sourceTree = "<group>"; };
 		90B5A9DC1E0C0D7E00797565 /* CPCollectionViewWheelLayout-Swift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CPCollectionViewWheelLayout-Swift.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		90B5A9DF1E0C0D7E00797565 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		90B5A9E41E0C0D7E00797565 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -42,7 +42,7 @@
 		9043E23F1E1552F800F90632 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				9043E2461E168D3300F90632 /* CPCollectionViewWheelLayout-Swift.swift */,
+				9043E2461E168D3300F90632 /* CPCollectionViewWheelLayout.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -151,7 +151,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9043E2471E168D3300F90632 /* CPCollectionViewWheelLayout-Swift.swift in Sources */,
+				9043E2471E168D3300F90632 /* CPCollectionViewWheelLayout.swift in Sources */,
 				90B5A9E01E0C0D7E00797565 /* AppDelegate.swift in Sources */,
 				9043E2431E155E4B00F90632 /* CPViewController.swift in Sources */,
 				9043E2451E155E6F00F90632 /* CPColletionViewCell.swift in Sources */,
