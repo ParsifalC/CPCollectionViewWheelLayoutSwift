@@ -12,6 +12,7 @@ class CPViewController: UIViewController, UICollectionViewDataSource {
     
     fileprivate let reuseIdentifier = "CPCollectionViewCell"
     var colletionView:UICollectionView?
+    open var wheelType = CPWheelLayoutType.CPWheelLayoutLeftBottom
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +21,7 @@ class CPViewController: UIViewController, UICollectionViewDataSource {
         let layout = UICollectionViewFlowLayout.init()
         layout.itemSize = CGSize.init(width: 100, height: 100)
         layout.scrollDirection = .vertical
-        let configuration = CPWheelLayoutConfiguration.init(withCellSize: CGSize.init(width: 100, height: 100), radius: 200, angular: 20, wheelType:.CPWheelLayoutBottomCenter)
+        let configuration = CPWheelLayoutConfiguration.init(withCellSize: CGSize.init(width: 100, height: 100), radius: 200, angular: 20, wheelType:wheelType)
         let wheelLayout = CPCollectionViewWheelLayout.init(withConfiguration: configuration)
         colletionView = UICollectionView.init(frame: view.frame, collectionViewLayout:wheelLayout)
         colletionView?.showsVerticalScrollIndicator = false
@@ -67,4 +68,8 @@ class CPViewController: UIViewController, UICollectionViewDataSource {
         colletionView?.reloadData()
     }
     
+    @IBAction func dismissButtonTapped(_ sender: UIButton) {
+        self.dismiss(animated: true) {
+        }
+    }
 }

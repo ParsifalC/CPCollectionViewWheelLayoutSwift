@@ -8,8 +8,8 @@
 
 import UIKit
 
-enum CPWheelLayoutType {
-    case CPWheelLayoutLeftBottom
+enum CPWheelLayoutType:Int {
+    case CPWheelLayoutLeftBottom = 0
     case CPWheelLayoutRightBottom
     case CPWheelLayoutLeftTop
     case CPWheelLayoutRightTop

@@ -14,6 +14,7 @@
 		90B5A9E51E0C0D7E00797565 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90B5A9E31E0C0D7E00797565 /* Main.storyboard */; };
 		90B5A9E71E0C0D7E00797565 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90B5A9E61E0C0D7E00797565 /* Assets.xcassets */; };
 		90B5A9EA1E0C0D7E00797565 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90B5A9E81E0C0D7E00797565 /* LaunchScreen.storyboard */; };
+		90F65A771E20B87F000940B9 /* CPTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90F65A761E20B87F000940B9 /* CPTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		90B5A9E61E0C0D7E00797565 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		90B5A9E91E0C0D7E00797565 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		90B5A9EB1E0C0D7E00797565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		90F65A761E20B87F000940B9 /* CPTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CPTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +72,7 @@
 				90B5A9DF1E0C0D7E00797565 /* AppDelegate.swift */,
 				9043E2421E155E4B00F90632 /* CPViewController.swift */,
 				9043E2441E155E6F00F90632 /* CPColletionViewCell.swift */,
+				90F65A761E20B87F000940B9 /* CPTableViewController.swift */,
 				90B5A9E61E0C0D7E00797565 /* Assets.xcassets */,
 				90B5A9E31E0C0D7E00797565 /* Main.storyboard */,
 				90B5A9E81E0C0D7E00797565 /* LaunchScreen.storyboard */,
@@ -154,6 +157,7 @@
 				9043E2471E168D3300F90632 /* CPCollectionViewWheelLayout.swift in Sources */,
 				90B5A9E01E0C0D7E00797565 /* AppDelegate.swift in Sources */,
 				9043E2431E155E4B00F90632 /* CPViewController.swift in Sources */,
+				90F65A771E20B87F000940B9 /* CPTableViewController.swift in Sources */,
 				9043E2451E155E6F00F90632 /* CPColletionViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
