@@ -221,9 +221,20 @@ class CPCollectionViewWheelLayout: UICollectionViewLayout {
     
     override var collectionViewContentSize: CGSize {
         let viewSize = collectionView?.bounds.size
-        let visibleCellCount = CGFloat(90.0/configuration.angular+1.0)
-        return CGSize.init(width: viewSize!.width,
-                           height: (viewSize?.height)!+(CGFloat(cellCount)-visibleCellCount)*(configuration.cellSize.height)+CGFloat(configuration.contentHeigthPadding))
+        var visibleCellCount:CGFloat
+        var contentSize:CGSize
+        switch configuration.wheelType {
+        case .CPWheelLayoutBottomCenter,.CPWheelLayoutTopCenter,.CPWheelLayoutRightCenter, .CPWheelLayoutLeftCenter:
+            visibleCellCount = CGFloat(180.0/configuration.angular+1.0)
+            contentSize = CGSize.init(width: viewSize!.width,
+                                     height: (viewSize?.height)!+(CGFloat(cellCount)-visibleCellCount)*(configuration.cellSize.height)+CGFloat(configuration.contentHeigthPadding))
+        default:
+            visibleCellCount = CGFloat(90.0/configuration.angular+1.0)
+            contentSize = CGSize.init(width: viewSize!.width,
+                                     height: (viewSize?.height)!+(CGFloat(cellCount)-visibleCellCount)*(configuration.cellSize.height)+CGFloat(configuration.contentHeigthPadding))
+        }
+        
+        return contentSize
     }
     
 }
