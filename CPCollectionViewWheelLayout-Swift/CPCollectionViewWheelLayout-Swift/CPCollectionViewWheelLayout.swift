@@ -8,6 +8,17 @@
 
 import UIKit
 
+enum CPWheelLayoutType {
+    case CPWheelLayoutLeftBottom
+    case CPWheelLayoutRightBottom
+    case CPWheelLayoutLeftTop
+    case CPWheelLayoutRightTop
+    case CPWheelLayoutLeftCenter
+    case CPWheelLayoutRightCenter
+    case CPWheelLayoutTopCenter
+    case CPWheelLayoutBottomCenter
+}
+
 struct CPWheelLayoutConfiguration {
     var _cellSize:CGSize
     var _radius:Double
@@ -15,17 +26,20 @@ struct CPWheelLayoutConfiguration {
     var fadeAway:Bool
     var maxContentHeight:Double
     var contentHeigthPadding:Double
+    var wheelType:CPWheelLayoutType
     
     // MARK: - Initial Methods
     init(withCellSize cellSize:CGSize,
                         radius:Double,
                         angular:Double,
+                        wheelType:CPWheelLayoutType,
                         fadeAway:Bool = true,
                         maxContentHeight:Double = 0.0,
                         contentHeigthPadding:Double = 0.0) {
         _cellSize = cellSize
         _radius = radius
         _angular = angular
+        self.wheelType = wheelType
         self.fadeAway = fadeAway
         self.maxContentHeight = maxContentHeight
         self.contentHeigthPadding = contentHeigthPadding
@@ -99,21 +113,98 @@ class CPCollectionViewWheelLayout: UICollectionViewLayout {
         let attributes = UICollectionViewLayoutAttributes.init(forCellWith: indexPath)
         attributes.size = cellSize
         attributes.isHidden = true
-        let angle = angular/90.0*Double(visibleCellIndex)*M_PI_2
+        var angle = angular/90.0*Double(visibleCellIndex)*M_PI_2
         let angleOffset = asin(Double(cellSize.width)/radius)
         var translation = CGAffineTransform.identity
         
-        attributes.center = CGPoint.init(x: cellSize.width/2.0,
-                                         y: (contentOffset?.y)!+(viewSize?.height)!-cellSize.height/2)
-        
-        if (angle <= (M_PI_2+2.0*angleOffset+angular/90.0)) && (angle >= -angleOffset) {
-            attributes.isHidden = false
-            translation = CGAffineTransform.init(translationX: CGFloat(sin(angle)*radius),
-                                                 y: -(CGFloat(cos(angle)*radius)+cellSize.height/2.0))
+        switch configuration.wheelType {
+        case .CPWheelLayoutLeftBottom:
+            attributes.center = CGPoint.init(x: cellSize.width/2.0,
+                                             y: (contentOffset?.y)!+(viewSize?.height)!-cellSize.height/2)
+            
+            if (angle <= (M_PI_2+2.0*angleOffset+angular/90.0)) && (angle >= -angleOffset) {
+                attributes.isHidden = false
+                translation = CGAffineTransform.init(translationX: CGFloat(sin(angle)*radius),
+                                                     y: -(CGFloat(cos(angle)*radius)+cellSize.height/2.0))
+            }
+        case .CPWheelLayoutRightBottom:
+            attributes.center = CGPoint.init(x: (viewSize?.width)!-cellSize.width/2.0,
+                                             y: (contentOffset?.y)!+(viewSize?.height)!-cellSize.height/2)
+            
+            if (angle <= (M_PI_2+2.0*angleOffset+angular/90.0)) && (angle >= -angleOffset) {
+                attributes.isHidden = false
+                translation = CGAffineTransform.init(translationX: CGFloat(-sin(angle)*radius),
+                                                     y: -(CGFloat(cos(angle)*radius)+cellSize.height/2.0))
+            }
+        case .CPWheelLayoutLeftTop:
+            attributes.center = CGPoint.init(x: cellSize.width/2.0,
+                                             y: (contentOffset?.y)!)
+            
+            if (angle <= (M_PI_2+2.0*angleOffset+angular/90.0)) && (angle >= -angleOffset) {
+                attributes.isHidden = false
+                translation = CGAffineTransform.init(translationX: CGFloat(cos(angle)*radius),
+                                                     y: (CGFloat(sin(angle)*radius)+cellSize.height/2.0))
+            }
+        case .CPWheelLayoutRightTop:
+            attributes.center = CGPoint.init(x: (viewSize?.width)!-cellSize.width/2.0,
+                                             y: (contentOffset?.y)!)
+            
+            if (angle <= (M_PI_2+2.0*angleOffset+angular/90.0)) && (angle >= -angleOffset) {
+                attributes.isHidden = false
+                translation = CGAffineTransform.init(translationX: CGFloat(-cos(angle)*radius),
+                                                     y: (CGFloat(sin(angle)*radius)+cellSize.height/2.0))
+            }
+        case .CPWheelLayoutLeftCenter:
+            attributes.center = CGPoint.init(x: cellSize.width/2.0,
+                                             y: (contentOffset?.y)!+(viewSize?.height)!/2)
+            angle = visibleCellIndex*angular/180*M_PI;
+            
+            if (angle <= (M_PI+2.0*angleOffset+angular/180.0)) && (angle >= -angleOffset) {
+                attributes.isHidden = false
+                translation = CGAffineTransform.init(translationX: CGFloat(sin(angle)*radius),
+                                                     y: -CGFloat(cos(angle)*radius))
+            }
+
+        case .CPWheelLayoutRightCenter:
+            attributes.center = CGPoint.init(x: (viewSize?.width)!-cellSize.width/2.0,
+                                             y: (contentOffset?.y)!+(viewSize?.height)!/2)
+            
+            if (angle <= (M_PI+2.0*angleOffset+angular/180.0)) && (angle >= -angleOffset) {
+                attributes.isHidden = false
+                translation = CGAffineTransform.init(translationX: -CGFloat(sin(angle)*radius),
+                                                     y: -CGFloat(cos(angle)*radius))
+            }
+        case .CPWheelLayoutTopCenter:
+            attributes.center = CGPoint.init(x: (viewSize?.width)!/2.0,
+                                             y: (contentOffset?.y)!+cellSize.width/2)
+            angle = visibleCellIndex*angular/180*M_PI;
+
+            if (angle <= (M_PI+2.0*angleOffset+angular/180.0)) && (angle >= -angleOffset) {
+                attributes.isHidden = false
+                translation = CGAffineTransform.init(translationX: -CGFloat(cos(angle)*radius),
+                                                     y: (CGFloat(sin(angle)*radius)))
+            }
+        case .CPWheelLayoutBottomCenter:
+            attributes.center = CGPoint.init(x: (viewSize?.width)!/2.0,
+                                             y: (contentOffset?.y)!+(viewSize?.height)!-cellSize.height/2)
+            angle = visibleCellIndex*angular/180*M_PI;
+            
+            if (angle <= (M_PI+2.0*angleOffset+angular/180.0)) && (angle >= -angleOffset) {
+                attributes.isHidden = false
+                translation = CGAffineTransform.init(translationX: -CGFloat(cos(angle)*radius),
+                                                     y: -CGFloat(sin(angle)*radius))
+            }
         }
         
         attributes.transform = translation
-        attributes.alpha = CGFloat(fadeAway ? (1.0-fabs(angle-M_PI_4)) : 1.0)
+        var fadeFactor:Double
+        switch configuration.wheelType {
+        case .CPWheelLayoutBottomCenter,.CPWheelLayoutTopCenter,.CPWheelLayoutRightCenter, .CPWheelLayoutLeftCenter:
+            fadeFactor = 1-fabs(angle-M_PI_2)*0.5
+        default:
+            fadeFactor = 1-fabs(angle-M_PI_4)
+        }
+        attributes.alpha = CGFloat(fadeAway ? (fadeFactor) : 1.0)
         return attributes
     }
     
