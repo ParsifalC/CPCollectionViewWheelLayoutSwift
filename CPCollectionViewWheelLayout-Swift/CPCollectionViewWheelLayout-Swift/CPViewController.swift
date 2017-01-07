@@ -23,6 +23,8 @@ class CPViewController: UIViewController, UICollectionViewDataSource {
         let configuration = CPWheelLayoutConfiguration.init(withCellSize: CGSize.init(width: 100, height: 100), radius: 200, angular: 20, wheelType:.CPWheelLayoutBottomCenter)
         let wheelLayout = CPCollectionViewWheelLayout.init(withConfiguration: configuration)
         colletionView = UICollectionView.init(frame: view.frame, collectionViewLayout:wheelLayout)
+        colletionView?.showsVerticalScrollIndicator = false
+        colletionView?.showsHorizontalScrollIndicator = false
         colletionView?.backgroundColor = .white
         colletionView?.register(CPCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         colletionView?.dataSource = self
