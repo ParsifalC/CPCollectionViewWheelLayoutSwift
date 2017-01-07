@@ -12,7 +12,7 @@ class CPViewController: UIViewController, UICollectionViewDataSource {
     
     fileprivate let reuseIdentifier = "CPCollectionViewCell"
     var colletionView:UICollectionView?
-    open var wheelType = CPWheelLayoutType.CPWheelLayoutLeftBottom
+    open var wheelType = CPWheelLayoutType.leftBottom
     
     override func viewDidLoad() {
         super.viewDidLoad()

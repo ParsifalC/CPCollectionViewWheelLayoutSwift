@@ -9,20 +9,20 @@
 import UIKit
 
 enum CPWheelLayoutType:Int {
-    case CPWheelLayoutLeftBottom = 0
-    case CPWheelLayoutRightBottom
-    case CPWheelLayoutLeftTop
-    case CPWheelLayoutRightTop
-    case CPWheelLayoutLeftCenter
-    case CPWheelLayoutRightCenter
-    case CPWheelLayoutTopCenter
-    case CPWheelLayoutBottomCenter
+    case leftBottom = 0
+    case rightBottom
+    case leftTop
+    case rightTop
+    case leftCenter
+    case rightCenter
+    case topCenter
+    case bottomCenter
 }
 
 struct CPWheelLayoutConfiguration {
     var _cellSize:CGSize
     var _radius:Double
-    var _angular:Double //每个cell的角度间隔
+    var _angular:Double
     var fadeAway:Bool
     var maxContentHeight:Double
     var contentHeigthPadding:Double
@@ -118,7 +118,7 @@ class CPCollectionViewWheelLayout: UICollectionViewLayout {
         var translation = CGAffineTransform.identity
         
         switch configuration.wheelType {
-        case .CPWheelLayoutLeftBottom:
+        case .leftBottom:
             attributes.center = CGPoint.init(x: cellSize.width/2.0,
                                              y: (contentOffset?.y)!+(viewSize?.height)!-cellSize.height/2)
             
@@ -127,7 +127,7 @@ class CPCollectionViewWheelLayout: UICollectionViewLayout {
                 translation = CGAffineTransform.init(translationX: CGFloat(sin(angle)*radius),
                                                      y: -(CGFloat(cos(angle)*radius)+cellSize.height/2.0))
             }
-        case .CPWheelLayoutRightBottom:
+        case .rightBottom:
             attributes.center = CGPoint.init(x: (viewSize?.width)!-cellSize.width/2.0,
                                              y: (contentOffset?.y)!+(viewSize?.height)!-cellSize.height/2)
             
@@ -136,7 +136,7 @@ class CPCollectionViewWheelLayout: UICollectionViewLayout {
                 translation = CGAffineTransform.init(translationX: CGFloat(-sin(angle)*radius),
                                                      y: -(CGFloat(cos(angle)*radius)+cellSize.height/2.0))
             }
-        case .CPWheelLayoutLeftTop:
+        case .leftTop:
             attributes.center = CGPoint.init(x: cellSize.width/2.0,
                                              y: (contentOffset?.y)!)
             
@@ -145,7 +145,7 @@ class CPCollectionViewWheelLayout: UICollectionViewLayout {
                 translation = CGAffineTransform.init(translationX: CGFloat(cos(angle)*radius),
                                                      y: (CGFloat(sin(angle)*radius)+cellSize.height/2.0))
             }
-        case .CPWheelLayoutRightTop:
+        case .rightTop:
             attributes.center = CGPoint.init(x: (viewSize?.width)!-cellSize.width/2.0,
                                              y: (contentOffset?.y)!)
             
@@ -154,7 +154,7 @@ class CPCollectionViewWheelLayout: UICollectionViewLayout {
                 translation = CGAffineTransform.init(translationX: CGFloat(-cos(angle)*radius),
                                                      y: (CGFloat(sin(angle)*radius)+cellSize.height/2.0))
             }
-        case .CPWheelLayoutLeftCenter:
+        case .leftCenter:
             attributes.center = CGPoint.init(x: cellSize.width/2.0,
                                              y: (contentOffset?.y)!+(viewSize?.height)!/2)
             angle = visibleCellIndex*angular/180*M_PI;
@@ -165,7 +165,7 @@ class CPCollectionViewWheelLayout: UICollectionViewLayout {
                                                      y: -CGFloat(cos(angle)*radius))
             }
 
-        case .CPWheelLayoutRightCenter:
+        case .rightCenter:
             attributes.center = CGPoint.init(x: (viewSize?.width)!-cellSize.width/2.0,
                                              y: (contentOffset?.y)!+(viewSize?.height)!/2)
             
@@ -174,7 +174,7 @@ class CPCollectionViewWheelLayout: UICollectionViewLayout {
                 translation = CGAffineTransform.init(translationX: -CGFloat(sin(angle)*radius),
                                                      y: -CGFloat(cos(angle)*radius))
             }
-        case .CPWheelLayoutTopCenter:
+        case .topCenter:
             attributes.center = CGPoint.init(x: (viewSize?.width)!/2.0,
                                              y: (contentOffset?.y)!+cellSize.width/2)
             angle = visibleCellIndex*angular/180*M_PI;
@@ -184,7 +184,7 @@ class CPCollectionViewWheelLayout: UICollectionViewLayout {
                 translation = CGAffineTransform.init(translationX: -CGFloat(cos(angle)*radius),
                                                      y: (CGFloat(sin(angle)*radius)))
             }
-        case .CPWheelLayoutBottomCenter:
+        case .bottomCenter:
             attributes.center = CGPoint.init(x: (viewSize?.width)!/2.0,
                                              y: (contentOffset?.y)!+(viewSize?.height)!-cellSize.height/2)
             angle = visibleCellIndex*angular/180*M_PI;
@@ -199,7 +199,7 @@ class CPCollectionViewWheelLayout: UICollectionViewLayout {
         attributes.transform = translation
         var fadeFactor:Double
         switch configuration.wheelType {
-        case .CPWheelLayoutBottomCenter,.CPWheelLayoutTopCenter,.CPWheelLayoutRightCenter, .CPWheelLayoutLeftCenter:
+        case .bottomCenter,.topCenter,.rightCenter,.leftCenter:
             fadeFactor = 1-fabs(angle-M_PI_2)*0.5
         default:
             fadeFactor = 1-fabs(angle-M_PI_4)
@@ -224,7 +224,7 @@ class CPCollectionViewWheelLayout: UICollectionViewLayout {
         var visibleCellCount:CGFloat
         var contentSize:CGSize
         switch configuration.wheelType {
-        case .CPWheelLayoutBottomCenter,.CPWheelLayoutTopCenter,.CPWheelLayoutRightCenter, .CPWheelLayoutLeftCenter:
+        case .bottomCenter,.topCenter,.rightCenter,.leftCenter:
             visibleCellCount = CGFloat(180.0/configuration.angular+1.0)
             contentSize = CGSize.init(width: viewSize!.width,
                                      height: (viewSize?.height)!+(CGFloat(cellCount)-visibleCellCount)*(configuration.cellSize.height)+CGFloat(configuration.contentHeigthPadding))

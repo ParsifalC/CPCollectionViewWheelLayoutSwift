@@ -9,11 +9,11 @@
 import UIKit
 
 class CPTableViewController:UITableViewController {
-    let wheelTypes = ["CPWheelLayoutLeftBottom", "CPWheelLayoutRightBottom",
-                      "CPWheelLayoutLeftTop", "CPWheelLayoutRightTop",
-                      "CPWheelLayoutLeftCenter", "CPWheelLayoutRightCenter",
-                      "CPWheelLayoutTopCenter", "CPWheelLayoutBottomCenter"]
-    var selectType = CPWheelLayoutType.CPWheelLayoutLeftBottom
+    let wheelTypes = ["leftBottom", "rightBottom",
+                      "leftTop", "rightTop",
+                      "leftCenter", "rightCenter",
+                      "topCenter", "bottomCenter"]
+    var selectType = CPWheelLayoutType.leftBottom
     
     override func viewDidLoad() {
         super.viewDidLoad()
