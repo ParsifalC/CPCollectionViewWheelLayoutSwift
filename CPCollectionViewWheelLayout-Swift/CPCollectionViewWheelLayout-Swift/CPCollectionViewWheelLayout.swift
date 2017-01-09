@@ -20,9 +20,28 @@ enum CPWheelLayoutType:Int {
 }
 
 struct CPWheelLayoutConfiguration {
-    var _cellSize:CGSize
-    var _radius:Double
-    var _angular:Double
+    var cellSize:CGSize {
+        didSet {
+            if cellSize.width<=0.0 || cellSize.height<=0.0 {
+                cellSize = CGSize.init(width: 50.0, height: 50.0)
+            }
+        }
+    }
+    var radius:Double {
+        didSet {
+            if radius <= 0 {
+                radius = 200.0
+            }
+        }
+    }
+    var angular:Double {
+        didSet {
+            if angular <= 0 {
+                angular = 20.0
+            }
+        }
+    }
+
     var fadeAway:Bool
     var maxContentHeight:Double
     var contentHeigthPadding:Double
@@ -36,41 +55,13 @@ struct CPWheelLayoutConfiguration {
                         fadeAway:Bool = true,
                         maxContentHeight:Double = 0.0,
                         contentHeigthPadding:Double = 0.0) {
-        _cellSize = cellSize
-        _radius = radius
-        _angular = angular
+        self.cellSize = cellSize
+        self.radius = radius
+        self.angular = angular
         self.wheelType = wheelType
         self.fadeAway = fadeAway
         self.maxContentHeight = maxContentHeight
         self.contentHeigthPadding = contentHeigthPadding
-    }
-    
-    // MARK: - Getter & Setter
-    var radius:Double {
-        get {
-            return _radius
-        }
-        set {
-            _radius = newValue>0 ? newValue : 200
-        }
-    }
-    
-    var angular:Double {
-        get {
-            return _angular
-        }
-        set {
-            _angular = newValue>0 ? newValue : 20.0
-        }
-    }
-    
-    var cellSize:CGSize {
-        get {
-            return _cellSize
-        }
-        set {
-            _cellSize = newValue.width<=0.0 || newValue.height<=0.0 ?  CGSize.init(width: 50.0, height: 50.0) : newValue
-        }
     }
 }
 
