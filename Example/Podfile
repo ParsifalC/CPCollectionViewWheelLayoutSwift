@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'CPCollectionViewWheelLayoutSwift_Example' do
+  pod 'CPCollectionViewWheelLayoutSwift', :path => '../'
+
+  target 'CPCollectionViewWheelLayoutSwift_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
