@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 import CPCollectionViewWheelLayoutSwift
 
 class CPTableViewController:UITableViewController {
