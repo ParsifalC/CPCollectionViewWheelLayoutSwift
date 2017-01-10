@@ -13,4 +13,4 @@ before_install:
 - pod install --project-directory=Example
 - pod lib lint
 script:
-- set -o pipefail && xcodebuild test -workspace Example/CPCollectionViewWheelLayoutSwift.xcworkspace -scheme CPCollectionViewWheelLayoutSwift-Example -destination 'platform=iOS Simulator,OS=10.2,name=iPhone 6' ONLY_ACTIVE_ARCH=NO | xcpretty
+- set -o pipefail && xcodebuild test -workspace Example/CPCollectionViewWheelLayoutSwift.xcworkspace -scheme CPCollectionViewWheelLayoutSwift-Example -destination 'platform=iOS Simulator,OS=10.2,id=AD8E8C76-910E-437D-88C2-4D6F6EBE3355,name=iPhone 6' ONLY_ACTIVE_ARCH=NO | xcpretty
