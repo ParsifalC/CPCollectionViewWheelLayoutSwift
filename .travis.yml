@@ -2,12 +2,13 @@
 # * http://www.objc.io/issue-6/travis-ci.html
 # * https://github.com/supermarin/xcpretty#usage
 
-osx_image: xcode8.2.1
-language: swift
+osx_image: xcode8.2
+language: objective-c
 # cache: cocoapods
 # podfile: Example/Podfile
 before_install:
-# - gem install cocoapods # Since Travis is not always on latest version
+- rvm install ruby-2.3.1 && rvm use 2.3.1 
+- gem install cocoapods # Since Travis is not always on latest version
 - pod install --project-directory=Example
 script:
 - set -o pipefail && xcodebuild test -workspace Example/CPCollectionViewWheelLayoutSwift.xcworkspace -scheme CPCollectionViewWheelLayoutSwift-Example -sdk iphonesimulator9.3 ONLY_ACTIVE_ARCH=NO | xcpretty
