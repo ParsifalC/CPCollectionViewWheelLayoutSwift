@@ -1,10 +1,10 @@
 # CPCollectionViewWheelLayoutSwift
-<figure class="third">
-<img src="http://ojg3xdx9d.bkt.clouddn.com//CPCollectionViewLayout-LeftBottom.gif" width="381" height="654" align="center">
-<img src="http://ojg3xdx9d.bkt.clouddn.com//CPCollectionViewLayout-LeftCenter.gif" width="381" height="654" align="center">
-<img src="http://ojg3xdx9d.bkt.clouddn.com//CPCollectionViewLayout-TopCenter.gif" width="381" height="654" align="center">
-</figure>
 
+<p align="center">
+      <img style=" float:left; display:inline" src="http://ojg3xdx9d.bkt.clouddn.com//CPCollectionViewLayout-LeftBottom.gif" width="160" height="275" align="center">
+      <img style=" float:left; display:inline" src="http://ojg3xdx9d.bkt.clouddn.com//CPCollectionViewLayout-LeftCenter.gif" width="160" height="275" align="center">
+      <img style=" float:left; display:inline" src="http://ojg3xdx9d.bkt.clouddn.com//CPCollectionViewLayout-TopCenter.gif" width="160" height="275" align="center">
+ </p>
 
 [![CI Status](http://img.shields.io/travis/Parsifal/CPCollectionViewWheelLayoutSwift.svg?style=flat)](https://travis-ci.org/Parsifal/CPCollectionViewWheelLayoutSwift)
 [![Version](https://img.shields.io/cocoapods/v/CPCollectionViewWheelLayoutSwift.svg?style=flat)](http://cocoapods.org/pods/CPCollectionViewWheelLayoutSwift)
