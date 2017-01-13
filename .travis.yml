@@ -15,5 +15,9 @@ after_install:
 - pod lib lint
 script:
 - set -o pipefail
-- xcodebuild -project CPCollectionViewWheelLayoutSwift.xcodeproj -scheme CPCollectionViewWheelLayoutSwift -destination 'platform=iOS Simulator,OS=10.2,name=iPhone 6' ONLY_ACTIVE_ARCH=NO | xcpretty
-- xcodebuild test -workspace Example/CPCollectionViewWheelLayoutSwift.xcworkspace -scheme CPCollectionViewWheelLayoutSwift_Example -destination 'platform=iOS Simulator,OS=10.2,name=iPhone 6' ONLY_ACTIVE_ARCH=NO | xcpretty
+- xcodebuild -project CPCollectionViewWheelLayoutSwift.xcodeproj -scheme CPCollectionViewWheelLayoutSwift -destination 'platform=iOS Simulator' ONLY_ACTIVE_ARCH=NO | xcpretty
+- xcodebuild test -workspace Example/CPCollectionViewWheelLayoutSwift.xcworkspace -scheme CPCollectionViewWheelLayoutSwift_Example -destination 'platform=iOS Simulator' ONLY_ACTIVE_ARCH=NO | xcpretty
+notifications:
+  email: false
+after_success:
+- bash <(curl -s https://codecov.io/bash)
