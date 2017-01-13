@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'CPCollectionViewWheelLayoutSwift'
-  s.version          = '0.1.3'
+  s.version          = '0.1.5'
   s.summary          = 'An awesome layout for UICollcetionView'
   s.description      = <<-DESC
   An awesome layout for UICollcetionView!
