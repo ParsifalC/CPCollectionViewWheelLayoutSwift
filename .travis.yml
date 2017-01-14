@@ -15,8 +15,7 @@ after_install:
 - pod lib lint
 script:
 - set -o pipefail
-- xctool -project CPCollectionViewWheelLayoutSwift.xcodeproj -scheme CPCollectionViewWheelLayoutSwift -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty
-- xctool test -workspace Example/CPCollectionViewWheelLayoutSwift.xcworkspace -scheme CPCollectionViewWheelLayoutSwift_Example -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty
+- xcodebuild -project CPCollectionViewWheelLayoutSwift.xcodeproj -scheme CPCollectionViewWheelLayoutSwift -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty
 
 notifications:
   email: false
