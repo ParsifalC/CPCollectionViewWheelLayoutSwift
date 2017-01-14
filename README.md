@@ -7,7 +7,7 @@
       <img style=" float:left; display:inline" src="http://ojg3xdx9d.bkt.clouddn.com//CPCollectionViewLayout-TopCenter.gif" width="160" height="275" align="center">
  </p>
 
-[![CI Status](http://img.shields.io/travis/Parsifal/CPCollectionViewWheelLayoutSwift.svg?style=flat)](https://travis-ci.org/Parsifal/CPCollectionViewWheelLayoutSwift)
+[![CI Status](http://img.shields.io/travis/ParsifalC/CPCollectionViewWheelLayoutSwift.svg?style=flat)](https://travis-ci.org/Parsifal/CPCollectionViewWheelLayoutSwift)
 [![Version](https://img.shields.io/cocoapods/v/CPCollectionViewWheelLayoutSwift.svg?style=flat)](http://cocoapods.org/pods/CPCollectionViewWheelLayoutSwift)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![License](https://img.shields.io/cocoapods/l/CPCollectionViewWheelLayoutSwift.svg?style=flat)]
