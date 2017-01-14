@@ -16,7 +16,7 @@
 
 ## Example
 
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
+To run the example project, clone the repo, and run `pod install` from the Example directory first.[You can view it from Appetize](https://appetize.io/app/k20jdwcyuh8cmjjwyqyq8fen8g?device=iphone6s&scale=75&orientation=portrait&osVersion=9.3)
 
 ## Requirements
 - **Swift3**
