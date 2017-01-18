@@ -43,6 +43,7 @@ public struct CPWheelLayoutConfiguration {
     }
     
     public var fadeAway:Bool
+    public var zoomInOut:Bool
     public var maxContentHeight:Double
     public var contentHeigthPadding:Double
     public var wheelType:CPWheelLayoutType
@@ -52,6 +53,7 @@ public struct CPWheelLayoutConfiguration {
                 radius:Double,
                 angular:Double,
                 wheelType:CPWheelLayoutType,
+                zoomInOut:Bool = true,
                 fadeAway:Bool = true,
                 maxContentHeight:Double = 0.0,
                 contentHeigthPadding:Double = 0.0) {
@@ -59,6 +61,7 @@ public struct CPWheelLayoutConfiguration {
         self.radius = radius
         self.angular = angular
         self.wheelType = wheelType
+        self.zoomInOut = zoomInOut
         self.fadeAway = fadeAway
         self.maxContentHeight = maxContentHeight
         self.contentHeigthPadding = contentHeigthPadding
@@ -198,6 +201,7 @@ open class CPCollectionViewWheelLayout: UICollectionViewLayout {
             fadeFactor = 1-fabs(angle-M_PI_4)
         }
         attributes.alpha = CGFloat(fadeAway ? (fadeFactor) : 1.0)
+        attributes.size = CGSize(width:cellSize.width*CGFloat(fadeFactor), height:cellSize.height*CGFloat(fadeFactor))
         return attributes
     }
     
