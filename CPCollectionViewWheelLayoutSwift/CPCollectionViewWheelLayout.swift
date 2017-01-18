@@ -83,9 +83,10 @@ open class CPCollectionViewWheelLayout: UICollectionViewLayout {
     }
     
     override open func prepare() {
-        cellCount = collectionView!.numberOfItems(inSection: 0)
+        guard let collectionView = collectionView else { return }
+        cellCount = collectionView.numberOfItems(inSection: 0)
         if cellCount > 0 {
-            invisibleCellCount = Double(collectionView!.contentOffset.y/configuration.cellSize.height)
+            invisibleCellCount = Double(collectionView.contentOffset.y/configuration.cellSize.height)
         }
     }
     
@@ -94,12 +95,13 @@ open class CPCollectionViewWheelLayout: UICollectionViewLayout {
     }
     
     override open func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
-        let viewSize = collectionView?.bounds.size
+        guard let collectionView = collectionView else { return nil }
+        let viewSize = collectionView.bounds.size
         let cellSize = configuration.cellSize
         let angular = configuration.angular
         let radius = configuration.radius
         let fadeAway = configuration.fadeAway
-        let contentOffset = collectionView?.contentOffset
+        let contentOffset = collectionView.contentOffset
         let visibleCellIndex = Double(indexPath.item)-invisibleCellCount
         let attributes = UICollectionViewLayoutAttributes.init(forCellWith: indexPath)
         attributes.size = cellSize
@@ -111,7 +113,7 @@ open class CPCollectionViewWheelLayout: UICollectionViewLayout {
         switch configuration.wheelType {
         case .leftBottom:
             attributes.center = CGPoint.init(x: cellSize.width/2.0,
-                                             y: (contentOffset?.y)!+(viewSize?.height)!-cellSize.height/2)
+                                             y: (contentOffset.y)+(viewSize.height)-cellSize.height/2)
             
             if (angle <= (M_PI_2+2.0*angleOffset+angular/90.0)) && (angle >= -angleOffset) {
                 attributes.isHidden = false
@@ -119,8 +121,8 @@ open class CPCollectionViewWheelLayout: UICollectionViewLayout {
                                                      y: -(CGFloat(cos(angle)*radius)+cellSize.height/2.0))
             }
         case .rightBottom:
-            attributes.center = CGPoint.init(x: (viewSize?.width)!-cellSize.width/2.0,
-                                             y: (contentOffset?.y)!+(viewSize?.height)!-cellSize.height/2)
+            attributes.center = CGPoint.init(x: (viewSize.width)-cellSize.width/2.0,
+                                             y: (contentOffset.y)+(viewSize.height)-cellSize.height/2)
             
             if (angle <= (M_PI_2+2.0*angleOffset+angular/90.0)) && (angle >= -angleOffset) {
                 attributes.isHidden = false
@@ -129,7 +131,7 @@ open class CPCollectionViewWheelLayout: UICollectionViewLayout {
             }
         case .leftTop:
             attributes.center = CGPoint.init(x: cellSize.width/2.0,
-                                             y: (contentOffset?.y)!)
+                                             y: (contentOffset.y))
             
             if (angle <= (M_PI_2+2.0*angleOffset+angular/90.0)) && (angle >= -angleOffset) {
                 attributes.isHidden = false
@@ -137,8 +139,8 @@ open class CPCollectionViewWheelLayout: UICollectionViewLayout {
                                                      y: (CGFloat(sin(angle)*radius)+cellSize.height/2.0))
             }
         case .rightTop:
-            attributes.center = CGPoint.init(x: (viewSize?.width)!-cellSize.width/2.0,
-                                             y: (contentOffset?.y)!)
+            attributes.center = CGPoint.init(x: (viewSize.width)-cellSize.width/2.0,
+                                             y: (contentOffset.y))
             
             if (angle <= (M_PI_2+2.0*angleOffset+angular/90.0)) && (angle >= -angleOffset) {
                 attributes.isHidden = false
@@ -147,7 +149,7 @@ open class CPCollectionViewWheelLayout: UICollectionViewLayout {
             }
         case .leftCenter:
             attributes.center = CGPoint.init(x: cellSize.width/2.0,
-                                             y: (contentOffset?.y)!+(viewSize?.height)!/2)
+                                             y: (contentOffset.y)+(viewSize.height)/2)
             angle = visibleCellIndex*angular/180*M_PI;
             
             if (angle <= (M_PI+2.0*angleOffset+angular/180.0)) && (angle >= -angleOffset) {
@@ -157,8 +159,8 @@ open class CPCollectionViewWheelLayout: UICollectionViewLayout {
             }
             
         case .rightCenter:
-            attributes.center = CGPoint.init(x: (viewSize?.width)!-cellSize.width/2.0,
-                                             y: (contentOffset?.y)!+(viewSize?.height)!/2)
+            attributes.center = CGPoint.init(x: (viewSize.width)-cellSize.width/2.0,
+                                             y: (contentOffset.y)+(viewSize.height)/2)
             
             if (angle <= (M_PI+2.0*angleOffset+angular/180.0)) && (angle >= -angleOffset) {
                 attributes.isHidden = false
@@ -166,8 +168,8 @@ open class CPCollectionViewWheelLayout: UICollectionViewLayout {
                                                      y: -CGFloat(cos(angle)*radius))
             }
         case .topCenter:
-            attributes.center = CGPoint.init(x: (viewSize?.width)!/2.0,
-                                             y: (contentOffset?.y)!+cellSize.width/2)
+            attributes.center = CGPoint.init(x: (viewSize.width)/2.0,
+                                             y: (contentOffset.y)+cellSize.width/2)
             angle = visibleCellIndex*angular/180*M_PI;
             
             if (angle <= (M_PI+2.0*angleOffset+angular/180.0)) && (angle >= -angleOffset) {
@@ -176,8 +178,8 @@ open class CPCollectionViewWheelLayout: UICollectionViewLayout {
                                                      y: (CGFloat(sin(angle)*radius)))
             }
         case .bottomCenter:
-            attributes.center = CGPoint.init(x: (viewSize?.width)!/2.0,
-                                             y: (contentOffset?.y)!+(viewSize?.height)!-cellSize.height/2)
+            attributes.center = CGPoint.init(x: (viewSize.width)/2.0,
+                                             y: (contentOffset.y)+(viewSize.height)-cellSize.height/2)
             angle = visibleCellIndex*angular/180*M_PI;
             
             if (angle <= (M_PI+2.0*angleOffset+angular/180.0)) && (angle >= -angleOffset) {
@@ -211,18 +213,19 @@ open class CPCollectionViewWheelLayout: UICollectionViewLayout {
     }
     
     override open var collectionViewContentSize: CGSize {
-        let viewSize = collectionView?.bounds.size
+        guard let collectionView = collectionView else { return CGSize.zero }
+        let viewSize = collectionView.bounds.size
         var visibleCellCount:CGFloat
         var contentSize:CGSize
         switch configuration.wheelType {
         case .bottomCenter,.topCenter,.rightCenter,.leftCenter:
             visibleCellCount = CGFloat(180.0/configuration.angular+1.0)
-            contentSize = CGSize.init(width: viewSize!.width,
-                                      height: (viewSize?.height)!+(CGFloat(cellCount)-visibleCellCount)*(configuration.cellSize.height)+CGFloat(configuration.contentHeigthPadding))
+            contentSize = CGSize.init(width: viewSize.width,
+                                      height: (viewSize.height)+(CGFloat(cellCount)-visibleCellCount)*(configuration.cellSize.height)+CGFloat(configuration.contentHeigthPadding))
         default:
             visibleCellCount = CGFloat(90.0/configuration.angular+1.0)
-            contentSize = CGSize.init(width: viewSize!.width,
-                                      height: (viewSize?.height)!+(CGFloat(cellCount)-visibleCellCount)*(configuration.cellSize.height)+CGFloat(configuration.contentHeigthPadding))
+            contentSize = CGSize.init(width: viewSize.width,
+                                      height: (viewSize.height)+(CGFloat(cellCount)-visibleCellCount)*(configuration.cellSize.height)+CGFloat(configuration.contentHeigthPadding))
         }
         
         return contentSize
