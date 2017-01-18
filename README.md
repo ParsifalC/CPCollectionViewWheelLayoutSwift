@@ -68,6 +68,20 @@ public enum CPWheelLayoutType:Int {
 }
 ```
 
+Customize your layout:    
+
+```Swift
+public struct CPWheelLayoutConfiguration {
+    public var cellSize:CGSize
+    public var radius:Double
+    public var angular:Double   
+    public var fadeAway:Bool
+    public var zoomInOut:Bool
+    public var maxContentHeight:Double
+    public var contentHeigthPadding:Double
+}
+```
+
 See more in Example project.   
 
 ## Author
