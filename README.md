@@ -2,7 +2,7 @@
 
 <p align="center">
 	   <img style=" float:left; display:inline" src="https://github.com/ParsifalC/CPCollectionViewWheelLayoutSwift/blob/master/ScreenShot.png?raw=true" width="160" height="275" align="center">
-	   <img style=" float:left; display:inline" src="http://ojg3xdx9d.bkt.clouddn.com//CPCollectionViewLayout-BottomCenter.gif" width="348" height="593" align="center">
+	   <img style=" float:left; display:inline" src="http://ojg3xdx9d.bkt.clouddn.com//CPCollectionViewLayout-BottomCenter.gif" width="160" height="275" align="center">
       <img style=" float:left; display:inline" src="http://ojg3xdx9d.bkt.clouddn.com//CPCollectionViewLayout-LeftBottom.gif" width="160" height="275" align="center">
       <img style=" float:left; display:inline" src="http://ojg3xdx9d.bkt.clouddn.com//CPCollectionViewLayout-LeftCenter.gif" width="160" height="275" align="center">
       <img style=" float:left; display:inline" src="http://ojg3xdx9d.bkt.clouddn.com//CPCollectionViewLayout-TopCenter.gif" width="160" height="275" align="center">
