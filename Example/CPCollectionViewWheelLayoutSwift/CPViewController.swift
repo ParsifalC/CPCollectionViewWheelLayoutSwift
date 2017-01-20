@@ -26,9 +26,6 @@ class CPViewController: UIViewController, UICollectionViewDataSource {
         }
         
         // setup views
-        let layout = UICollectionViewFlowLayout.init()
-        layout.itemSize = CGSize.init(width: 100, height: 100)
-        layout.scrollDirection = .vertical
         let configuration = CPWheelLayoutConfiguration.init(withCellSize: CGSize.init(width: 100, height: 100), radius: 200, angular: 20, wheelType:wheelType)
         let wheelLayout = CPCollectionViewWheelLayout.init(withConfiguration: configuration)
         colletionView = UICollectionView.init(frame: view.frame, collectionViewLayout:wheelLayout)
@@ -37,8 +34,8 @@ class CPViewController: UIViewController, UICollectionViewDataSource {
         colletionView.backgroundColor = .white
         colletionView.register(CPCollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
         colletionView.dataSource = self
-        view.addSubview(colletionView!)
-        view.sendSubview(toBack: colletionView!)
+        view.addSubview(colletionView)
+        view.sendSubview(toBack: colletionView)
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
