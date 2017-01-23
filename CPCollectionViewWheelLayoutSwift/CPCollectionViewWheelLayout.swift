@@ -82,10 +82,12 @@ open class CPCollectionViewWheelLayout: UICollectionViewLayout {
     }
     
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        self.configuration = CPWheelLayoutConfiguration.init(withCellSize: CGSize(width: 50, height: 50), radius: 100, angular: 30, wheelType: .leftBottom)
+        super.init(coder: aDecoder)
     }
     
     override open func prepare() {
+        super.prepare()
         guard let collectionView = collectionView else { return }
         cellCount = collectionView.numberOfItems(inSection: 0)
         if cellCount > 0 {
