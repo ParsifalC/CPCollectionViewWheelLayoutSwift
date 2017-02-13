@@ -73,6 +73,7 @@ open class CPCollectionViewWheelLayout: UICollectionViewLayout {
     // MARK: - Properties
     var cellCount = 0
     var invisibleCellCount = 0.0
+    var cachedAttributesArray = [UICollectionViewLayoutAttributes]()
     open var configuration:CPWheelLayoutConfiguration
     
     // MARK: - Open Methods
@@ -90,8 +91,15 @@ open class CPCollectionViewWheelLayout: UICollectionViewLayout {
         super.prepare()
         guard let collectionView = collectionView else { return }
         cellCount = collectionView.numberOfItems(inSection: 0)
-        if cellCount > 0 {
-            invisibleCellCount = Double(collectionView.contentOffset.y/configuration.cellSize.height)
+        guard cellCount > 0 else {
+            return
+        }
+        invisibleCellCount = Double(collectionView.contentOffset.y/configuration.cellSize.height)
+        cachedAttributesArray.removeAll()
+        for i in 0..<cellCount {
+            let indexPath = IndexPath(item: i, section: 0)
+            let attributes = UICollectionViewLayoutAttributes(forCellWith: indexPath)
+            cachedAttributesArray.append(attributes)
         }
     }
     
@@ -101,6 +109,8 @@ open class CPCollectionViewWheelLayout: UICollectionViewLayout {
     
     override open func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         guard let collectionView = collectionView else { return nil }
+        
+        let attributes = cachedAttributesArray[indexPath.item]
         let viewSize = collectionView.bounds.size
         let cellSize = configuration.cellSize
         let angular = configuration.angular
@@ -108,7 +118,6 @@ open class CPCollectionViewWheelLayout: UICollectionViewLayout {
         let fadeAway = configuration.fadeAway
         let contentOffset = collectionView.contentOffset
         let visibleCellIndex = Double(indexPath.item)-invisibleCellCount
-        let attributes = UICollectionViewLayoutAttributes.init(forCellWith: indexPath)
         attributes.size = cellSize
         attributes.isHidden = true
         var angle = angular/90.0*Double(visibleCellIndex)*M_PI_2
